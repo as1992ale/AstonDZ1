@@ -22,35 +22,25 @@ public class ArrayList {
     }
 
     public void add(Object element) {
-        //проверяем, не заполнен ли массив полностью
         if (size >= capacity) {
             resize();
         }
-        //добавляем элемент в свободную ячейку
         elements[size] = element;
-
-        //>счетчик элементов
         size++;
     }
 
     private void add(int index, Object element) {
-        //проверяем индекс
         if (index > size|| index < 0) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        //Расширяем массив?
         if (size >= capacity) {
             resize();
         }
-        //сдвигаем элементы справа от index
         for (int i = size; i > index; i--) {
             elements[i] = elements[i - 1];
         }
 
-        //всатвляем новый элемент
         elements[index] = element;
-
-        //увеличиваем счетчик
         size++;
     }
 
@@ -62,57 +52,44 @@ public class ArrayList {
             return false;
         }
 
-        // Проходим по коллекции и добавляем элементы через существующий add()
         for (Object element : collection) {
-            add(element); // Используем уже готовый метод add()
+            add(element);
         }
-
         return true;
     }
 
     private void resize() {
-        //вычисляем новый размер
         int newCapacity =(int)(capacity * GROW_FACTOR);
-
-        //новый массив
         Object[] newElements = new Object[newCapacity];
 
         for(int i = 0; i < size; i++) {
             newElements[i] = elements[i];
         }
 
-        //обновление ссылки на новый массив и новую вместимость
         elements = newElements;
         capacity = newCapacity;
     }
 
     public Object get(int index) {
-        //проверка наличие элемента
         if (index >= size || index < 0) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        //возвращаем элемент
         return elements[index];
     }
 
     public Object remove(int index) {
-        //Проверка валидности
-        if (index >= size || index < 0) {
+            if (index >= size || index < 0) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        //сохраняем и удаляем элементы для возврата
-        Object removedElement = elements[index];
+            Object removedElement = elements[index];
 
-        //сдвиг всех элементов вправо от удаляемого на 1 позицию влево
         for (int i = index; i < size - 1; i++) {
             elements[i] = elements[i + 1];
         }
 
-        //очищаем последнюю ячейку
         elements[size - 1] = null;
-        //уменьшаем счетчик элементов
         size--;
-        //возвращаем удаленный элемент
+
         return removedElement;
     }
 
