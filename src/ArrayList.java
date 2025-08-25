@@ -1,3 +1,5 @@
+import java.util.Collection;
+
 public class ArrayList {
     private static final  int DEFAULT_CAPACITY = 100;
     private static final  float GROW_FACTOR = 1.5f;
@@ -50,6 +52,22 @@ public class ArrayList {
 
         //увеличиваем счетчик
         size++;
+    }
+
+    public boolean addAll(Collection<?> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection null");
+        }
+        if (collection.isEmpty()) {
+            return false;
+        }
+
+        // Проходим по коллекции и добавляем элементы через существующий add()
+        for (Object element : collection) {
+            add(element); // Используем уже готовый метод add()
+        }
+
+        return true;
     }
 
     private void resize() {

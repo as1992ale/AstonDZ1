@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.stream.Stream;
+import java.util.List;
 
 public class main {
     public static void main(String[] args) {
@@ -11,12 +11,29 @@ public class main {
 
         Student student1 = new Student("MalkolmX");
         //Создаем книги
+        List<Book> books = new ArrayList<>();
+
+        books.add(new Book("Harry Potter and the Philisipher's ston", 1997, 150));
+        books.add(new Book("Harry Potter and the Chambers of Secrets", 1998, 200));
+        books.add(new Book("Harry Potter and the Prisoner of Azkaban", 1999, 215));
+        books.add(new Book("Harry Potter and the Goblet of Fire", 2000, 300));
+        books.add(new Book("Harry Potter and the Orden of the Phoenix", 2003, 600));
+
 
 
         Student student2 = new Student("John");
 
-        students.add(student2);
+        List<Book> books2 = new ArrayList<>();
 
+        books2.add(new Book("Harry Potter and the Half-Blood Prince", 2005, 500));
+        books2.add(new Book("Harry Potter and the Deathly Hallows", 2007, 550));
+        books2.add(new Book("A Daughter of the Snows", 1902, 250));
+        books2.add(new Book("The Kempton-Wace Letters", 1903, 400));
+        books2.add(new Book("Martin Eden", 1909, 600));
+        books2.add(new Book("War and Peace", 2007, 550));
+
+        student1.getBooks().addAll(books);
+        student2.getBooks().addAll(books2);
 
         students.stream()
                 // Вывести каждого студента
